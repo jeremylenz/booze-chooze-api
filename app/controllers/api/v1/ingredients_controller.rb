@@ -29,6 +29,10 @@ class IngredientsController < ApplicationController
     render json: @ingredients
   end
 
+  def show
+    render json: @ingredient
+  end
+
 
 
   private
