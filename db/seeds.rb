@@ -22,3 +22,13 @@ ingredients["drinks"].each do |ing|
   img_url = "http://www.thecocktaildb.com/images/ingredients/#{ing["strIngredient1"]}.png"
   Ingredient.create(name: ing["strIngredient1"], is_alcoholic: true, image_url: img_url)
 end
+
+puts "Database seeded with #{Ingredient.all.length} ingredients"
+
+#non-alcoholic drinks array:
+
+# ["Sugar", "Ice", "Lemon", "Lime juice", "Egg", "Mint", "Sweet and sour", "Salt", "Carbonated water", "Lemon peel", "Grenadine", "Grapefruit juice", "Vanilla ice-cream", "Lime juice cordial", "Apple juice", "Berries", "Blueberries", "Orange juice", "Cranberries", "Brown sugar", "Milk", "Mango", "Egg yolk", "Lemon juice", "Soda water", "Cream", "Pineapple", "Sugar syrup", "Ginger ale", "Worcestershire sauce", "Ginger", "Strawberries", "Chocolate syrup", "Yoghurt", "Grape juice", "Orange", "Apple cider", "Banana", "Soy milk", "Lime", "Cantaloupe", "Grapes", "Kiwi", "Tomato juice", "Cocoa powder", "Chocolate", "Heavy cream", "Coffee", "Water", "Espresso", "Honey", "Whipping cream", "Half-and-half", "Bread", "Plums", "Vanilla", "Apple", "Kool-Aid", "Lemonade", "Cranberry juice", "Eggnog", "Carbonated soft drink", "Cloves", "Raisins", "Almond", "Pink lemonade", "Sherbet", "Peach nectar", "Coca-Cola", "Tang", "Cider", "7-Up", "Limeade", "Maraschino cherry juice", "Cardamom", "Tabasco sauce", "Fruit punch", "Cherry juice", "Orange peel", "Clamato juice", "Sour mix", "Root beer", "Hot chocolate", "Jello", "Mountain Dew", "Cream of coconut", "Fruit juice", "Chocolate ice-cream", "Hawaiian Punch", "Tea", "demerara Sugar", "Passion fruit juice", "Pineapple juice", "Angelica root", "Condensed milk", "Tropicana", "Sprite", "Chocolate milk", "Beef bouillon", "Dr. Pepper", "Iced tea", "Club soda", "Cherry Cola", "Orange soda", "Lemon-lime soda", "Schweppes Russchian", "coconut milk"]
+
+#non-alcoholic drink indexes
+
+# [27, 30, 31, 38, 39, 40, 53, 54, 59, 60, 69, 73, 76, 79, 83, 84, 85, 86, 88, 89, 90, 108, 91, 92, 93, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 109, 110, 111, 112, 113, 114, 115, 116, 117, 120, 122, 123, 126, 127, 128, 129, 130, 132, 133, 136, 137, 138, 139, 140, 141, 142, 143, 145, 146, 147, 179, 181, 185, 192, 193, 198, 202, 204, 208, 210, 212, 214, 215, 223, 228, 229, 230, 235, 237, 241, 244, 17, 47, 66, 87, 124, 125, 182, 187, 246, 248, 249, 250, 252, 256, 261, 263, 266, 270]
