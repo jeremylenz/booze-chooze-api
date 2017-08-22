@@ -4,7 +4,11 @@ class Api::V1::CocktailsController < ApplicationController
 
   def create
 
-    new_cocktail = Cocktail.create(cocktail_params)
+    user = User.find(params[:user][:id])
+
+    new_cocktail = Cocktail.new(cocktail_params)
+    new_cocktail.user = user
+    new_cocktail.save
 
     if !new_cocktail.errors.empty?
       render json: {status: "error", code: 400, message: new_cocktail.errors.full_messages[0]}, status: 400
@@ -31,7 +35,9 @@ class Api::V1::CocktailsController < ApplicationController
   end
 
   def show
-    render json: @cocktail
+    render json: {cocktail: @cocktail,
+      recipes: @cocktail.recipes
+    }
   end
 
 

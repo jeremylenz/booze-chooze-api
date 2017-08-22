@@ -1,6 +1,6 @@
 class Api::V1::RecipesController < ApplicationController
 
-  before_action :set_recipe, except: [:index, :create]
+  before_action :set_recipe, except: [:index, :create, :bulkcreate]
 
   def create
     new_recipe = Recipe.create(recipe_params)
@@ -11,6 +11,23 @@ class Api::V1::RecipesController < ApplicationController
       render_nice_recipe(new_recipe)
 
     end
+
+  end
+
+  def bulkcreate
+
+    recipes_to_create = recipe_params[:bulk]
+    resp = recipes_to_create.each_with_object([]) do |recipe, resp|
+      new_recipe = Recipe.create(recipe)
+      if new_recipe.errors.empty?
+        resp << "Created recipe with id ##{new_recipe.id}"
+      else
+        resp << new_recipe.errors.full_messages[0]
+      end
+
+    end
+
+    render json: {response: resp}
 
   end
 
@@ -46,7 +63,7 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:cocktail_id, :ingredient_id, :parts)
+    params.require(:recipe).permit(:cocktail_id, :ingredient_id, :parts, bulk: [:cocktail_id, :ingredient_id, :parts])
   end
 
   def render_nice_recipe(new_recipe)
