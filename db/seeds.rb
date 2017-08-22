@@ -23,6 +23,9 @@ NON_ALCOHOLIC_INGREDIENTS = ["Sugar", "Ice", "Lemon", "Lime juice", "Egg", "Mint
 #   is_alcoholic
 # end
 
+
+
+
 # Ingredient list thanks to cocktaildb API
 
 Ingredient.all.each do |ing|

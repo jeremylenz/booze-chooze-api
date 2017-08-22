@@ -56,12 +56,12 @@ class Api::V1::CocktailsController < ApplicationController
   def generate_cocktail_name(data)
     # data = {ingredient1: 2,
   #        ingredient2: 2}
-    
+
     name_words = data.keys.map do |ingredient|
-      response = HTTParty.get("https://api.datamuse.com/words?rel_jjb=#{ingredient}&topics=alcohol")
+      response = HTTParty.get("https://api.datamuse.com/words?rel_jjb=#{ingredient.split(" ").last}&topics=alcohol")
       !response.empty? ? response[rand(result_length(response.length))]["word"].capitalize : nil
     end.compact
-    response_b = HTTParty.get("https://api.datamuse.com/words?rel_jja=#{data.keys.last}&topics=alcohol")
+    response_b = HTTParty.get("https://api.datamuse.com/words?rel_jja=#{data.keys.last.split(" ").last}&topics=alcohol")
     if !response_b.empty?
       name_words.pop
       name_words.push(response_b[rand(result_length(response_b.length))]["word"].capitalize.singularize)
