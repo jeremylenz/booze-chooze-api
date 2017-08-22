@@ -14,7 +14,7 @@ class Api::V1::CocktailsController < ApplicationController
   end
 
   def generate
-    new_cocktail_name =  generate_cocktail_name({"rum" => "2", "coke" => "3", "beef" => "1"})
+    new_cocktail_name =  generate_cocktail_name(params[:recipe])
     render json: {name: new_cocktail_name}
   end
 
@@ -56,6 +56,7 @@ class Api::V1::CocktailsController < ApplicationController
   def generate_cocktail_name(data)
     # data = {ingredient1: 2,
   #        ingredient2: 2}
+    
     name_words = data.keys.map do |ingredient|
       response = HTTParty.get("https://api.datamuse.com/words?rel_jjb=#{ingredient}&topics=alcohol")
       !response.empty? ? response[rand(result_length(response.length))]["word"].capitalize : nil
