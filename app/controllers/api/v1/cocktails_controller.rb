@@ -30,12 +30,17 @@ class Api::V1::CocktailsController < ApplicationController
 
 
   def index
-    @cocktails = Cocktail.all
+    if params[:id]
+      @cocktails = User.find(params[:id]).cocktails
+    else
+      @cocktails = Cocktail.all
+    end
     render json: @cocktails
   end
 
   def show
     render json: {cocktail: @cocktail,
+      recipe_line_item_texts: generate_recipe_line_item_texts(@cocktail.recipes),
       recipes: @cocktail.recipes
     }
   end
@@ -85,6 +90,14 @@ class Api::V1::CocktailsController < ApplicationController
       return (lng / 3).to_i
     end
 
+  end
+
+  def generate_recipe_line_item_texts(recipes)
+    recipes.map do |recipe|
+      ingredient_name = Ingredient.find(recipe.ingredient_id).name
+      parts_text = "#{recipe.parts} " + "part".pluralize(recipe.parts)
+      recipe_line_item_text = "#{parts_text} #{ingredient_name}"
+    end
   end
 
 end

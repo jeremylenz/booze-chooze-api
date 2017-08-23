@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :ingredients, only: [:index, :create, :update]
       post 'cocktails/generate', to: 'cocktails#generate'
       post 'recipes/bulkcreate', to: 'recipes#bulkcreate'
+      get 'users/:id/cocktails', to: 'cocktails#index'
       resources :cocktails, except: [:new, :edit] #Full CRUD!!!
       resources :users, except: [:new, :edit]
       resources :recipes, except: [:new, :edit]

@@ -41,6 +41,8 @@ end
 
 puts "Database seeded with #{Ingredient.all.length} ingredients"
 
+User.create(name: "JerBear")
+
 #non-alcoholic drinks array:
 
 # ["Sugar", "Ice", "Lemon", "Lime juice", "Egg", "Mint", "Sweet and sour", "Salt", "Carbonated water", "Lemon peel", "Grenadine", "Grapefruit juice", "Vanilla ice-cream", "Lime juice cordial", "Apple juice", "Berries", "Blueberries", "Orange juice", "Cranberries", "Brown sugar", "Milk", "Mango", "Egg yolk", "Lemon juice", "Soda water", "Cream", "Pineapple", "Sugar syrup", "Ginger ale", "Worcestershire sauce", "Ginger", "Strawberries", "Chocolate syrup", "Yoghurt", "Grape juice", "Orange", "Apple cider", "Banana", "Soy milk", "Lime", "Cantaloupe", "Grapes", "Kiwi", "Tomato juice", "Cocoa powder", "Chocolate", "Heavy cream", "Coffee", "Water", "Espresso", "Honey", "Whipping cream", "Half-and-half", "Bread", "Plums", "Vanilla", "Apple", "Kool-Aid", "Lemonade", "Cranberry juice", "Eggnog", "Carbonated soft drink", "Cloves", "Raisins", "Almond", "Pink lemonade", "Sherbet", "Peach nectar", "Coca-Cola", "Tang", "Cider", "7-Up", "Limeade", "Maraschino cherry juice", "Cardamom", "Tabasco sauce", "Fruit punch", "Cherry juice", "Orange peel", "Clamato juice", "Sour mix", "Root beer", "Hot chocolate", "Jello", "Mountain Dew", "Cream of coconut", "Fruit juice", "Chocolate ice-cream", "Hawaiian Punch", "Tea", "demerara Sugar", "Passion fruit juice", "Pineapple juice", "Angelica root", "Condensed milk", "Tropicana", "Sprite", "Chocolate milk", "Beef bouillon", "Dr. Pepper", "Iced tea", "Club soda", "Cherry Cola", "Orange soda", "Lemon-lime soda", "Schweppes Russchian", "coconut milk"]

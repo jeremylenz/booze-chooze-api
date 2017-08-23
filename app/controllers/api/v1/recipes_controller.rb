@@ -68,7 +68,7 @@ class Api::V1::RecipesController < ApplicationController
 
   def render_nice_recipe(new_recipe)
     ingredient_name = Ingredient.find(new_recipe.ingredient_id).name
-    parts_text = "#{new_recipe.parts} parts"
+    parts_text = "#{new_recipe.parts} " + "part".pluralize(new_recipe.parts)
     recipe_line_item_text = "#{parts_text} #{ingredient_name}"
     render json: {id: new_recipe.id,
                 cocktail_id: new_recipe.cocktail_id,
