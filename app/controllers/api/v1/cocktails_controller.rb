@@ -41,7 +41,8 @@ class Api::V1::CocktailsController < ApplicationController
   def show
     render json: {cocktail: @cocktail,
       recipe_line_item_texts: generate_recipe_line_item_texts(@cocktail.recipes),
-      recipes: @cocktail.recipes
+      recipes: @cocktail.recipes,
+      ingredient_image_urls: @cocktail.recipes.map { |rcp| rcp.ingredient.image_url }
     }
   end
 
