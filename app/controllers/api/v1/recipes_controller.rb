@@ -17,15 +17,38 @@ class Api::V1::RecipesController < ApplicationController
   def bulkcreate
 
     recipes_to_create = recipe_params[:bulk]
-    resp = recipes_to_create.each_with_object([]) do |recipe, resp|
+    resp = []
+
+    new_recipes = recipes_to_create.map do |recipe|
       new_recipe = Recipe.create(recipe)
       if new_recipe.errors.empty?
         resp << "Created recipe with id ##{new_recipe.id}"
       else
         resp << new_recipe.errors.full_messages[0]
       end
-
+      new_recipe
     end
+
+    is_alcoholic_list = new_recipes.map do |rec|
+      rec.ingredient.is_alcoholic
+    end
+
+    if !is_alcoholic_list.include?(true)
+      new_recipes[0].cocktail.is_alcoholic = false
+      new_recipes[0].cocktail.save
+    end
+
+    # resp = recipes_to_create.each_with_object([]) do |recipe, resp|
+    #   new_recipe = Recipe.create(recipe)
+      # if new_recipe.errors.empty?
+      #   resp << "Created recipe with id ##{new_recipe.id}"
+      # else
+      #   resp << new_recipe.errors.full_messages[0]
+      # end
+    #
+    # end
+
+
 
     render json: {response: resp}
 
